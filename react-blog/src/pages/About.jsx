@@ -1,5 +1,4 @@
 const About = () => {
-
   return (
     <div className="container mt-4">
       <h1>About React-Blog</h1>
@@ -14,7 +13,6 @@ const About = () => {
       <h3 className="mt-4">Our Team</h3>
       <p>
         We're a small team of passionate developers who love building web applications with React.
-        
       </p>
     </div>
   )

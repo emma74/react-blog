@@ -30,38 +30,29 @@ const PostDetail = () => {
     if (id) fetchPostData();
   }, [id]);
 
-  if (loading) {
-    return (
-      <div className="container text-center m-5">
-        <div className="spinner-border text-success" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-        <p className="mt-2">Loading post...</p>
-      </div>
-    );
-  }
+  if (loading) return (
+    <div className="container text-center m-5">
+      <div className="spinner-border text-success" role="status"><span className="visually-hidden">Loading...</span></div>
+      <p className="mt-2">Loading post...</p>
+    </div>
+  );
 
-  if (error) {
-    return (
-      <div className="container text-center m-5">
-        <div className="alert alert-danger">{error}</div>
-      </div>
-    );
-  }
+  if (error) return (
+    <div className="container text-center m-5">
+      <div className="alert alert-danger">{error}</div>
+    </div>
+  );
 
-  if (!post) {
-    return (
-      <div className="container text-center m-5">
-        <h1 className="text-warning">Post not found.</h1>
-      </div>
-    );
-  }
+  if (!post) return (
+    <div className="container text-center m-5">
+      <h1 className="text-warning">Post not found.</h1>
+    </div>
+  );
 
   return (
     <div className="container mt-4">
       <h2 className="mb-3">{post.title}</h2>
       <p className="mb-4">{post.body}</p>
-
       <h3 className="mb-3">Comments</h3>
       {comments && comments.length > 0 ? (
         comments.map((c) => (

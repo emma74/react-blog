@@ -15,14 +15,11 @@ const Posts = () => {
 
   const fetchPosts = async () => {
     setIsLoading(true);
-
     try {
       const allPosts = await apiService.getPosts();
-      setPosts(allPosts.slice(0, 20)); // Limit to first 20 posts for better performance
-
+      setPosts(allPosts.slice(0, 20));
     } catch (error) {
       console.error('Error fetching posts:', error);
-
     } finally {
       setIsLoading(false);
     }
@@ -30,7 +27,6 @@ const Posts = () => {
 
   const HandlePostCreated = (newPost) => {
     setPosts(prevPosts => [newPost, ...prevPosts]);
-    //setPosts([newPost, ...prevPosts]); 
     setShowForm(false);
   }
 
@@ -42,7 +38,6 @@ const Posts = () => {
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="mb-0">Blog Posts</h1>
-
         <button
           className={`btn ${showForm ? 'btn-secondary' : 'btn-success'}`}
           onClick={() => setShowForm(!showForm)}>
@@ -50,7 +45,6 @@ const Posts = () => {
         </button>
       </div>
       {showForm && <CreatePostForms onPostCreated={HandlePostCreated} />}
-
       {isLoading ? (
         <div className="text-center m-5">
           <div className="spinner-border text-success" role="status">
@@ -62,7 +56,7 @@ const Posts = () => {
         <div className="m-4">
           {posts.length > 0 ? (
             posts.map(post => (
-              <div>
+              <div key={post.id}>
                 <div className="card-body">
                   <h5 className="card-title">{post.title}</h5>
                   <p className="card-text">{post.body.length > 100 ? `${post.body.substring(0, 100)}...` : post.body}</p>
@@ -77,7 +71,6 @@ const Posts = () => {
               No posts available. Please create a new post using the form above.
             </div>
           )}
-
         </div>
       )}
     </div>

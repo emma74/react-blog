@@ -4,19 +4,16 @@ const API_BASE_URL = 'https://dummyjson.com';
 
 const apiService = {
 
-  //Get all posts
   getPosts: async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/posts`);
       return response.data.posts;
-
-    }catch (error) {
+    } catch (error) {
       console.error('Error fetching posts:', error);
       throw error; 
     } 
   },
 
-  //Get post by id
   getPostById: async (id) => {
     try {
       const response = await axios.get(`${API_BASE_URL}/posts/${id}`);
@@ -27,7 +24,6 @@ const apiService = {
     }
   },
 
-  //Get all users
   getUsers: async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/users`);
@@ -38,13 +34,12 @@ const apiService = {
     }
   },
 
-  //Create a new post
   createPost: async (postData) => {
     try {
       const formattedData = {
         title: postData.title,
         body: postData.body,
-        userId: 1  // DummyJSON requires userId
+        userId: 1
       };
       const response = await axios.post(`${API_BASE_URL}/posts/add`, formattedData);
       return response.data;
@@ -54,7 +49,6 @@ const apiService = {
     }
   },
 
-  //Get all comments for a post
   getCommentsByPostId: async (postId) => {
     try {
       const response = await axios.get(`${API_BASE_URL}/posts/${postId}/comments`);
